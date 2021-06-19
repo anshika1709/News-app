@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, CardActions, CardActionArea, CardContent, CardMedia, Button, Typography } from "@material-ui/core";
 import useStyles from "./styles.js";
-import { mergeClasses } from "@material-ui/styles";
+import classNames from "classnames";
 
-const NewsCard = ({ article: { description, publishedAt, source, title, url, urlToImage }, i }) => {
+const NewsCard = ({ article: { description, publishedAt, source, title, url, urlToImage }, i, activeArticle }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
+    <Card className={(classes.card, activeArticle === i ? classes.activeCard : null)}>
       <CardActionArea href={url} target="_blank">
         <CardMedia className={classes.media} image={urlToImage || "https://www.industry.gov.au/sites/default/files/August%202018/image/news-placeholder-738.png"} />
         <div className={classes.details}>
