@@ -1,20 +1,23 @@
 import React from "react";
 import { Card, CardActions, CardActionArea, CardContent, CardMedia, Button, Typography } from "@material-ui/core";
+import useStyles from "./styles.js";
+import { mergeClasses } from "@material-ui/styles";
 
 const NewsCard = ({ article: { description, publishedAt, source, title, url, urlToImage }, i }) => {
+  const classes = useStyles();
   return (
-    <Card>
-      <CardActionArea>
-        <CardMedia image={urlToImage || "https://www.industry.gov.au/sites/default/files/August%202018/image/news-placeholder-738.png"} />
-        <div>
+    <Card className={classes.card}>
+      <CardActionArea href={url} target="_blank">
+        <CardMedia className={classes.media} image={urlToImage || "https://www.industry.gov.au/sites/default/files/August%202018/image/news-placeholder-738.png"} />
+        <div className={classes.details}>
           <Typography variant="body2" color="textSecondary" component="h2">
-            {new Date(publishedAt).toDateString}
+            {new Date(publishedAt).toDateString()}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="h2">
             {source.name}
           </Typography>
         </div>
-        <Typography gutterBottom variant="h5">
+        <Typography className={classes.title} gutterBottom variant="h5">
           {title}
         </Typography>
         <CardContent>
@@ -23,7 +26,7 @@ const NewsCard = ({ article: { description, publishedAt, source, title, url, url
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.cardActions}>
         <Button size="small" color="primary">
           Learn more
         </Button>
